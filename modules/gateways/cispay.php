@@ -63,8 +63,8 @@ function cispay_config() {
 			'FriendlyName' => 'Комиссия',
 			'Type' => 'dropdown',
             'Options' => array(
-                '0' => 'Магазин',
-                '1' => 'Клиент'
+                0 => 'Магазин',
+                1 => 'Клиент'
             ),
 			'Description' => 'С кого списывать комиссию при оплате',
 		),
