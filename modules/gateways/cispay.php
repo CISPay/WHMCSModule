@@ -16,7 +16,7 @@ if (!defined("WHMCS")) {
 function cispay_MetaData() {
 	return array(
 		'DisplayName' => 'Модуль для приема платежей через CISPay',
-		'APIVersion' => '1.1',
+		'APIVersion' => '1.2',
 		'DisableLocalCredtCardInput' => true,
 		'TokenisedStorage' => false,
 	);
@@ -68,15 +68,6 @@ function cispay_config() {
             ),
 			'Description' => 'С кого списывать комиссию при оплате',
 		),
-		'method' => array(
-			'FriendlyName' => 'Метод оплаты',
-			'Type' => 'dropdown',
-            'Options' => array(
-                'card' => 'QIWI/Карты',
-                'crypto' => 'Криптовалюта'
-            ),
-			'Description' => '',
-		)
 	);
 }
 
@@ -97,7 +88,6 @@ function cispay_config() {
 function cispay_link($params) {
 	$shop_uuid = $params['shop_uuid'];
 	$subtract = $params['subtract'];
-	$method = $params['method'];
 	$sum = $params['amount'];
 
 	$comment = $params['description'];
@@ -112,7 +102,6 @@ function cispay_link($params) {
 		'comment' => $comment,
 		'expire' => 1900,
 		'hook_url' => $params['systemurl'].'modules/gateways/callback/cispay.php',
-		'method' => $method,
 		'subtract' => $subtract,
 		'success_url' => $params['returnurl']
 	];
